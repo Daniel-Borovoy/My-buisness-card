@@ -13,7 +13,6 @@ function fixedNavbar() {
     indent.style.marginTop = 0;
   }
 }
-
 // JQUERY
 // $(document).ready(function() {
 //   $(document).scroll(function () {
