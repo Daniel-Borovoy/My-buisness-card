@@ -47,6 +47,7 @@ function fixedNavbar() {
 // POPUPS **************************************************
 const popupLinks = document.querySelectorAll(".popup_link");
 const popups = document.querySelectorAll(".popup");
+const cancels = document.querySelectorAll(".cancel");
 if (popupLinks){
   for (let i = 0; i < popupLinks.length; i++) {
     popupLinks[i].addEventListener("click", function (e) {
@@ -64,6 +65,10 @@ for (let i = 0; i < popupLinks.length; i++){
           popups[i].classList.toggle("popup__open");
         }
       });
+  cancels[i].addEventListener("click", function (e) {
+      enableScroll();
+      popups[i].classList.remove("popup__open");
+  });
   }
 function disableScroll() {
   scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -75,22 +80,7 @@ function disableScroll() {
 function enableScroll() {
   window.onscroll = function() {};
 }
-// **********************************************************
-// JQUERY
-// $(document).ready(function() {
-//   $(document).scroll(function () {
-//       let y = $(this).scrollTop();
-//       let x = $("#section_2").position() + $('#nav').outerHeight() + "px";
-//       if (y >= x.top) {
-//           $('#nav').addClass("fixed");
-//           $("#section_2").css({margin-top: $('#nav').outerHeight() + "px"});
-//       } else {
-//           $('#nav').removeClass("fixed");
-//           $("#section_2").css({margin-top: 0});
-//       }
-//       });
-// });
-// 
+// POPUPS END **************************************************
 const menu_Links = document.querySelectorAll(".menu_link[data-goto]");
 if (menu_Links.length > 0){
   menu_Links.forEach(menu_link => {
@@ -110,5 +100,13 @@ if (menu_Links.length > 0){
     } 
   }
 }
+// GALLERY *********************************
+const buttonNext = document.querySelectorAll(".next");
+const buttonBack = document.querySelectorAll(".back");
+const gallery = document.querySelectorAll(".gallery");
+buttonNext.addEventListener("click", function (e) {
+  
+})
+// GALLERY END *********************************
 
 

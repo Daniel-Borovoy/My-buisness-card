@@ -309,17 +309,44 @@ ul{
     justify-content: center;
     align-items: center;
     transition: .5s ease 0s;
+    z-index: 5;
     .popup__body{
+        position: relative;
         min-width: 500px;
         min-height: 300px;
         background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        overflow: hidden;
+        .cancel{
+            width: 30px;
+            position: absolute;
+            top: 5px; 
+            right: 5px;
+            transition: .1s ease 0s;
+            &:hover{
+                opacity: .5;
+            }    
+        }    
     }
     
 }
 .popup__open{
     visibility: visible;
     opacity: 1;
+    background-color: rgba(0, 0, 0, 0.9);
 }
-.lock__body{
+.gallery__container{
     overflow: hidden;
+}
+.gallery{
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+    height: 200px;
+    img{
+        width: 400px;
+    }
 }
