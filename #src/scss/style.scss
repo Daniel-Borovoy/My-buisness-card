@@ -11,6 +11,7 @@ body{
     background-color: rgb(26,26,28);
     overflow: hidden;
     height: auto;
+    transition: 1s ease 0s;
 }
 .menu_icon{
     display: none;
@@ -308,7 +309,7 @@ ul{
     visibility: hidden;
     justify-content: center;
     align-items: center;
-    transition: .5s ease 0s;
+    transition: .3s ease 0s;
     z-index: 5;
     .popup__body{
         position: relative;
@@ -321,6 +322,7 @@ ul{
         flex-direction: column;
         overflow: hidden;
         .cancel{
+            user-select: none;
             width: 30px;
             position: absolute;
             top: 5px; 
@@ -328,15 +330,23 @@ ul{
             transition: .1s ease 0s;
             &:hover{
                 opacity: .5;
-            }    
+            }
+            &:active{
+                opacity: 1;
+                filter: contrast(1.5);
+            }   
         }    
     }
     
+}
+.body__lock{
+    overflow: hidden;
 }
 .popup__open{
     visibility: visible;
     opacity: 1;
     background-color: rgba(0, 0, 0, 0.9);
+    z-index: 10;
 }
 .gallery__container{
     overflow: hidden;
@@ -346,6 +356,7 @@ ul{
     flex-direction: row;
     width: 400px;
     height: 200px;
+    transition: 1s ease 0s;
     img{
         width: 400px;
     }

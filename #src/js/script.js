@@ -1,49 +1,47 @@
 
-// Navbar fixed
-window.onscroll = function() {fixedNavbar()};
+// Navbar *********************************************
+window.onscroll = function() {fixateNavbar()};
 let navbar = document.getElementById("nav");
-let offset = navbar.offsetTop;
-let indent = document.getElementById("section_2");
-function fixedNavbar() {
-  if (window.pageYOffset >= offset) {
+let section2 = document.getElementById("section_2");
+let section1 = document.getElementById("section_1");
+navbar.addEventListener("scroll", fixateNavbar);
+function fixateNavbar(){
+  let offset = section1.getBoundingClientRect().height;
+  if ((window.pageYOffset || document.documentElement.scrollTop) >= offset) {
     navbar.classList.add("fixed");
-    indent.style.marginTop = navbar.offsetHeight + "px";
-  } else {
+    section2.style.paddingTop = navbar.offsetHeight + "px";
+  }
+  else{
     navbar.classList.remove("fixed");
-    indent.style.marginTop = 0;
+    section2.style.paddingTop = 0;
   }
 }
+// *****************************************************
 
-(function(){
-
-  let counter = document.querySelectorAll('.counter');
-  let limit = 0; // Переменная, чтобы останавливать функцию, когда всё запустится.
-  window.addEventListener('scroll', function(){  
-    if( limit == counter.length ){ return; }
-    
-    for(let i = 0; i < counter.length; i++){
-      let pos = counter[i].getBoundingClientRect().top; //Позиция блока, считая сверху окна
-      let win = window.innerHeight - 40; // На 40 пикселей меньше, чем высота окна
-      if( pos < win && counter[i].dataset.stop === "0" ){
-        counter[i].dataset.stop = 1; // Останавливаем перезапуск счета в этом блоке
-        let x = 0;
-        limit++; // Счетчик будет запущен, увеличиваем переменную на 1
-        let int = setInterval(function(){
-          // Раз в 60 миллисекунд будет прибавляться 50-я часть нужного числа
-          x = x + Math.ceil( counter[i].dataset.to / 50 ); 
-          counter[i].innerText = x + "%";
-          if( x > counter[i].dataset.to ){
-            //Как только досчитали - стираем интервал.
-            counter[i].innerText = counter[i].dataset.to + "%";
-            clearInterval(int);
-          }
-        }, 60);
-      }
+let counter = document.querySelectorAll('.counter');
+let limit = 0; // Переменная, чтобы останавливать функцию, когда всё запустится.
+window.addEventListener('scroll', function(){  
+  if( limit == counter.length ){ return; } 
+  for(let i = 0; i < counter.length; i++){
+    let pos = counter[i].getBoundingClientRect().top; //Позиция блока, считая сверху окна
+    let win = window.innerHeight - 40; // На 40 пикселей меньше, чем высота окна
+    if( pos < win && counter[i].dataset.stop === "0" ){
+      counter[i].dataset.stop = 1; // Останавливаем перезапуск счета в этом блоке
+      let x = 0;
+      limit++; // Счетчик будет запущен, увеличиваем переменную на 1
+      let int = setInterval(function(){
+        // Раз в 60 миллисекунд будет прибавляться 50-я часть нужного числа
+        x = x + Math.ceil( counter[i].dataset.to / 50 ); 
+        counter[i].innerText = x + "%";
+        if( x > counter[i].dataset.to ){
+          //Как только досчитали - стираем интервал.
+          counter[i].innerText = counter[i].dataset.to + "%";
+          clearInterval(int);
+        }
+      }, 60);
     }
-  });
-  
-  })();
-
+  }
+});
 // POPUPS **************************************************
 const popupLinks = document.querySelectorAll(".popup_link");
 const popups = document.querySelectorAll(".popup");
@@ -53,7 +51,7 @@ if (popupLinks){
     popupLinks[i].addEventListener("click", function (e) {
       e.preventDefault();
       const currentPopup = popups[i];
-      disableScroll();
+      document.body.classList.add("body__lock");
       currentPopup.classList.toggle("popup__open");
     });
   } 
@@ -61,28 +59,19 @@ if (popupLinks){
 for (let i = 0; i < popupLinks.length; i++){
   popups[i].addEventListener("click", function (e) {
         if (!e.target.closest('.popup__body')) {
-          enableScroll();
+          document.body.classList.remove("body__lock");
           popups[i].classList.toggle("popup__open");
         }
       });
   cancels[i].addEventListener("click", function (e) {
-      enableScroll();
+      document.body.classList.remove("body__lock");
       popups[i].classList.remove("popup__open");
   });
   }
-function disableScroll() {
-  scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-  window.onscroll = function() {
-    window.scrollTo(scrollLeft, scrollTop);
-  };
-}
-function enableScroll() {
-  window.onscroll = function() {};
-}
+
 // POPUPS END **************************************************
 const menu_Links = document.querySelectorAll(".menu_link[data-goto]");
-if (menu_Links.length > 0){
+if (menu_Links.length){
   menu_Links.forEach(menu_link => {
     menu_link.addEventListener("click", onMenuLinkClick)
   });
@@ -101,11 +90,25 @@ if (menu_Links.length > 0){
   }
 }
 // GALLERY *********************************
-const buttonNext = document.querySelectorAll(".next");
-const buttonBack = document.querySelectorAll(".back");
-const gallery = document.querySelectorAll(".gallery");
+let buttonNext = document.querySelector(".next");
+let buttonBack = document.querySelector(".back");
+let gallery = document.querySelector(".gallery");
+let images = document.querySelectorAll(".gallery img");
+let valueX = 0;
+let imgNumber = 1;
 buttonNext.addEventListener("click", function (e) {
-  
+  if (imgNumber < images.length){
+    imgNumber++;
+    valueX -= 400;
+    gallery.style.transform = `translateX(${valueX}px)`;
+  }
+})
+buttonBack.addEventListener("click", function (e) {
+  if (imgNumber !== 1){
+    imgNumber--;
+    valueX += 400;
+    gallery.style.transform = `translateX(${valueX}px)`;
+  }
 })
 // GALLERY END *********************************
 
