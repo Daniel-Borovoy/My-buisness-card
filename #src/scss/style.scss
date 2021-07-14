@@ -6,7 +6,26 @@ $mons: "Montserrat", sans-serif;
 
 body{
     font-family: "Montserrat", sans-serif;
+    transition: 1s ease 0s;
 }
+.html__load{
+    background: url(../img/loader.gif) center no-repeat;
+    background-size: 10%;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+.html{
+    transition: 1s ease 0s;
+}
+.body__load{
+    opacity: 0;
+}
+
+
+
+
+
 .nav{
     background-color: rgb(26,26,28);
     overflow: hidden;
@@ -197,7 +216,7 @@ ul{
         z-index: 3;
         .title{
             font: 700 40px/1.2 "Montserrat", sans-serif;
-            margin: 15px;
+            padding: 15px 15px;
             text-align: center;
             @media (max-width:480px) {
                 font-size: 40px;

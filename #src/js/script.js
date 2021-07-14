@@ -1,3 +1,7 @@
+addEventListener("load", function(){
+  document.querySelector("html").classList.remove("html__load");
+  document.body.classList.remove("body__load");
+});
 // Navbar *********************************************
 window.onscroll = function() {fixateNavbar()};
 let navbar = document.getElementById("nav");
