@@ -1,7 +1,7 @@
 {
-  "name": "gulp-tutorial",
-  "version": "1.0.0",
-  "description": "Сборка gulp",
+  "name": "MyBuisnessCard",
+  "version": "1.0.1",
+  "description": "layout",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,9 +23,8 @@
     "gulp-webp": "^4.0.0",
     "gulp-webp-html": "^1.0.2",
     "gulp-webpcss": "^1.1.1",
+    "node-sass": "^6.0.1",
     "prettier": "2.4.1"
   },
-  "dependencies": {
-    "node-sass": "^6.0.0"
-  }
+  "dependencies": {}
 }
