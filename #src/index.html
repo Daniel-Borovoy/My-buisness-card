@@ -1,30 +1,28 @@
 <!DOCTYPE html>
 <html class="html__load" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Site layout" />
     <title>DANIEL BOROVOY</title>
-    <link rel="stylesheet" href="css/style.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
-</head>
-<body class="body__load">
-    <div class="wrapper">
-        @@include('_startpage.html')
-        @@include('_navbar.html')
-        @@include('_services.html')
-        @@include('_portfolio.html')
-        @@include('_skills.html')
-        @@include('_resume.html')
-        @@include('_testimonals.html')
-        @@include('_contact.html')
-    </div>
+    <link rel="stylesheet" href="css/style.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <script src="js/wow.min.js"></script>
     <script>
-        new WOW().init();
+      new WOW().init()
     </script>
+  </head>
+  <body class="body__load">
+    <div class="wrapper">
+      @@include('_startpage.html') @@include('_navbar.html')
+      @@include('_portfolio.html') @@include('_skills.html')
+      @@include('_contact.html') @@include('_footer.html')
+    </div>
     <script src="js/swiper.min.js"></script>
     <script src="js/script.min.js"></script>
-    
-</body>
+  </body>
 </html>
