@@ -1,0 +1,54 @@
+$mainFont: 'Montserrat', sans-serif;
+
+.wrapper {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  font-family: $mainFont;
+  transition: 1s ease 0s;
+
+  &.body_lock {
+    overflow: hidden;
+  }
+
+  .load {
+    opacity: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: url(../img/loader.gif) center no-repeat;
+    background-size: 10%;
+    height: 100vh;
+    width: 100vw;
+  }
+}
+
+// Sections styles
+section {
+  position: relative;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .section__title {
+    color: #000;
+    font: 700 40px/1.2 $mainFont;
+    text-align: center;
+  }
+
+  .section__body {
+    padding: 0 15px;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+  }
+}

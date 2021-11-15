@@ -66,7 +66,7 @@
   function createEvent(event) {
     var bubble =
       arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1]
-    var cancel =
+    var popup__cancel =
       arguments.length <= 2 || arguments[2] === undefined ? false : arguments[2]
     var detail =
       arguments.length <= 3 || arguments[3] === undefined ? null : arguments[3]
@@ -75,7 +75,7 @@
     if (document.createEvent != null) {
       // W3C DOM
       customEvent = document.createEvent('CustomEvent')
-      customEvent.initCustomEvent(event, bubble, cancel, detail)
+      customEvent.initCustomEvent(event, bubble, popup__cancel, detail)
     } else if (document.createEventObject != null) {
       // IE DOM < 9
       customEvent = document.createEventObject()

@@ -1,0 +1,32 @@
+.skills-section {
+  background-color: #d8d8d8;
+
+  .section__body {
+    .section__skills {
+      margin: 30px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 10vmax;
+
+      @media (max-width: 767px) {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      @media (max-width: 424px) {
+        grid-template-columns: 1fr;
+      }
+
+      .section__item {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        color: #000;
+        font-weight: 700;
+
+        h1 {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}

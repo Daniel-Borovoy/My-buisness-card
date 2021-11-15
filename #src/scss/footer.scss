@@ -1,0 +1,52 @@
+footer {
+  background-color: #fff;
+  padding: 15px;
+
+  .footer__body {
+    margin: 0 auto;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    .footer__item {
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      a {
+        picture {
+          overflow: hidden;
+          display: block;
+          background-color: #f6f6f6;
+          border-radius: 10px;
+
+          source,
+          img {
+            object-fit: cover;
+            width: 70px;
+            transition: 0.5s;
+
+            @media (max-width: 424px) {
+              width: 50px;
+            }
+          }
+
+          &:hover {
+            opacity: 0.5;
+
+            img {
+              transform: scale(1.5);
+            }
+          }
+
+          &:active {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}

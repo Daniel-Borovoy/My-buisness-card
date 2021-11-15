@@ -1,7 +1,9 @@
-let project_folder = require('path').basename(__dirname)
-let source_folder = '#src'
+const project_folder = require('path').basename(__dirname)
+const source_folder = '#src'
+const PORT = 3000
 
-let path = {
+// Paths
+const path = {
   build: {
     html: project_folder + '/',
     css: project_folder + '/css/',
@@ -24,8 +26,9 @@ let path = {
   },
   clean: './' + project_folder + '/',
 }
-let { src, dest } = require('gulp'),
-  gulp = require('gulp'),
+
+// Plugin imports
+const { src, dest, series, parallel, watch } = require('gulp'),
   browsersync = require('browser-sync').create(),
   fileInclude = require('gulp-file-include'),
   del = require('del'),
@@ -39,59 +42,53 @@ let { src, dest } = require('gulp'),
   webp = require('gulp-webp'),
   webphtml = require('gulp-webp-html')
 
-function browserSync(params) {
+const browserSync = () => {
   browsersync.init({
     server: {
       baseDir: './' + project_folder + '/',
     },
-    port: 3000,
+    port: PORT,
     notify: false,
   })
 }
 
-function html() {
-  return src(path.src.html)
+const html = () =>
+  src(path.src.html)
     .pipe(fileInclude())
     .pipe(webphtml())
     .pipe(dest(path.build.html))
     .pipe(browsersync.stream())
-}
 
-function clean() {
-  return del(path.clean)
-}
+const clean = () => del(path.clean)
 
-function css() {
-  return (
-    src(path.src.css)
-      .pipe(
-        scss({
-          outputStyle: 'expanded',
-        })
-      )
-      .pipe(group_media())
-      .pipe(
-        autoprefixer({
-          overrideBrowserslist: ['last 5 versions'],
-          cascade: true,
-        })
-      )
-      // Выгружаем файл (не сжатый)
-      .pipe(dest(path.build.css))
-      // Сжимаем и выгружаем второй сжатый css
-      .pipe(clean_css())
-      .pipe(
-        rename({
-          extname: '.min.css',
-        })
-      )
-      .pipe(dest(path.build.css))
-      .pipe(browsersync.stream())
-  )
-}
+const css = () =>
+  src(path.src.css)
+    .pipe(
+      scss({
+        outputStyle: 'expanded',
+      })
+    )
+    .pipe(group_media())
+    .pipe(
+      autoprefixer({
+        overrideBrowserslist: ['last 5 versions'],
+        cascade: true,
+      })
+    )
+    // Uploading a file (not compressed)
+    .pipe(dest(path.build.css))
+    // Compress and upload the second css (already compressed)
+    .pipe(clean_css())
+    .pipe(
+      rename({
+        extname: '.min.css',
+      })
+    )
+    .pipe(dest(path.build.css))
+    .pipe(browsersync.stream())
 
-function js() {
-  return src(path.src.js)
+const js = () =>
+  src(path.src.js)
     .pipe(fileInclude())
     .pipe(dest(path.build.js))
     .pipe(
@@ -108,10 +105,9 @@ function js() {
     )
     .pipe(dest(path.build.js))
     .pipe(browsersync.stream())
-}
 
-function images() {
-  return src(path.src.img)
+const images = () =>
+  src(path.src.img)
     .pipe(
       webp({
         quality: 70,
@@ -124,27 +120,26 @@ function images() {
         progressive: true,
         svgoPlugins: [{ removeViewBox: false }],
         interlaced: true,
-        optimizationLevel: 3, // От 0 до 7
+        optimizationLevel: 3, // from 0 to 7
       })
     )
     .pipe(dest(path.build.img))
     .pipe(browsersync.stream())
+
+const watchFiles = () => {
+  watch([path.watch.html], html)
+  watch([path.watch.css], css)
+  watch([path.watch.js], js)
+  watch([path.watch.img], images)
 }
 
-function watchFiles(params) {
-  gulp.watch([path.watch.html], html)
-  gulp.watch([path.watch.css], css)
-  gulp.watch([path.watch.js], js)
-  gulp.watch([path.watch.img], images)
-}
-
-let build = gulp.series(clean, gulp.parallel(js, css, html, images))
-let watch = gulp.parallel(build, watchFiles, browserSync)
+const build = series(clean, parallel(js, css, html, images))
+const watchMyFiles = parallel(build, watchFiles, browserSync)
 
 exports.images = images
 exports.js = js
 exports.css = css
 exports.html = html
 exports.build = build
-exports.watch = watch
-exports.default = watch
+exports.watchMyFiles = watchMyFiles
+exports.default = watchMyFiles

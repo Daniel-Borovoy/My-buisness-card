@@ -1,0 +1,63 @@
+$mainFont: 'Montserrat', sans-serif;
+
+header {
+  display: inline-block;
+  position: relative;
+  background-color: rgb(26, 26, 28);
+  height: 70px;
+  transition: 1s ease 0s;
+
+  &.header_fixed {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .header__body {
+    max-width: 1200px;
+    height: 100%;
+    padding: 0 30px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .header__logo {
+      color: #fff;
+      cursor: pointer;
+      text-decoration: none;
+      font: 700 32px $mainFont;
+    }
+
+    .header__menu {
+      display: flex;
+      height: auto;
+      flex-direction: row;
+
+      @media (max-width: 424px) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .header__menu-link {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        font: 700 14px $mainFont;
+        margin-right: 5px;
+        background-color: rgba(0, 0, 0, 0);
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+.home-section {
+  background: url(../img/backgroundNotebook.jpg) center no-repeat fixed;
+  background-color: #464646;
+  background-size: cover;
+
+  .section__body {
+    .section__content {
+      z-index: 3;
+      img {
+        width: 30px;
+      }
+    }
+
+    .section__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      picture {
+        display: flex;
+        justify-content: center;
+        filter: invert(100%);
+      }
+    }
+
+    .section__title {
+      color: #fff;
+
+      &.section__title_greeting {
+        font-size: 14px;
+        padding: 0;
+      }
+    }
+  }
+
+  .home-section__filter {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+  }
+}
