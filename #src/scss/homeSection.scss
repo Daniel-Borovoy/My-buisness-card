@@ -8,6 +8,8 @@
       z-index: 3;
       img {
         width: 30px;
+        pointer-events: none;
+        user-select: none;
       }
     }
 
