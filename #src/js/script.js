@@ -5,7 +5,7 @@ addEventListener('load', () => {
 const navbar = document.querySelector('header')
 const section1 = document.querySelector('.home-section')
 const section2 = document.querySelector('.portfolio-section')
-// Header fixing function
+// Header fixing position function
 const fixingNavbar = () => {
   const offset = section1.getBoundingClientRect().height
   if ((window.pageYOffset || document.documentElement.scrollTop) >= offset) {
@@ -46,7 +46,9 @@ const numberCounter = () => {
 }
 
 addEventListener('scroll', () => {
-  fixingNavbar()
+  if (!CSS.supports('position', 'sticky')) {
+    fixingNavbar()
+  }
   numberCounter()
 })
 
@@ -59,7 +61,7 @@ if (popupLinks && popups && popup__cancels) {
     popupLinks[i].addEventListener('click', (e) => {
       e.preventDefault()
       popups[i].classList.add('popup_open')
-      
+
       document.body.classList.add('body_lock')
     })
 

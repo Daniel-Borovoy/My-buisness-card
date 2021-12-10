@@ -27,7 +27,7 @@ footer {
           img {
             object-fit: cover;
             width: 70px;
-            transition: 0.5s;
+            transition: 0.1s;
 
             @media (max-width: 424px) {
               width: 50px;
@@ -38,7 +38,7 @@ footer {
             opacity: 0.5;
 
             img {
-              transform: scale(1.5);
+              transform: scale(1.05);
             }
           }
 

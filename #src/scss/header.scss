@@ -1,18 +1,20 @@
 $mainFont: 'Montserrat', sans-serif;
 
 header {
+  position: sticky;
+  top: 0px;
   display: inline-block;
-  position: relative;
   background-color: rgb(26, 26, 28);
   height: 70px;
   transition: 1s ease 0s;
+  z-index: 1;
+  opacity: 0.98;
 
   &.header_fixed {
     position: fixed;
     left: 0;
     right: 0;
     top: 0;
-    z-index: 1;
   }
 
   .header__body {
